@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de exercícios</title>
+</head>
+<body>
+    <p>Este arquivo contem os exercícios propostos a serem solucionados em javascript</p>
+    <script>
+        //1.1 Variáveis e tipos de dados
+        let nome = "Luiz";
+        let idade = "18";
+        let altura = "1,78m";
+
+        console.log("Nome, idade e altura de uma pessoa:", nome, ",", idade, ",", altura);
+
+        let texto = "123.45";
+        let decimal = parseFloat(texto);
+        console.log("String: ", texto, typeof(texto));
+        console.log("Convertido para float: ", decimal, typeof(decimal));
+
+        //1.2 Operadores Aritméticos e Lógicos
+        let A = 3;
+        let B = 2;
+        
+        function somaSimples (A, B){
+            return A + B;
+        }
+
+        console.log("Soma de A + B:", somaSimples(A, B));
+
+        let C = 4;
+        let D = -6;
+
+        function positiveNum(A, B, X){
+            if(A > 0 && B > 0 && X > 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        console.log("Apenas números positivos:", positiveNum(A, B, C));
+        console.log("Um número negativos:", positiveNum(A, B, D));
+
+        //1.3 Condicionais
+        //Irei reutilizar cariáveis usadas anteriormente
+        function paridade(X){
+            C = X % 2;
+            if (C == 0){
+                return "Numero par."
+            }
+            else{
+                return "Numero ímpar."
+            }
+        }
+
+        console.log("com número ímpar:", paridade(A))
+        console.log("com número par:", paridade(B))
+
+        function faixaEtaria(idade){
+            if(idade >=0 ){
+                if(idade < 13){
+                    return "Criança."
+                }
+                else{
+                    if(idade < 18){
+                        return "Adolescente."
+                    }
+                    else{
+                        if(idade < 60){
+                            return "Adulto."
+                        }
+                        else{
+                            return "Idoso."
+                        }
+                    }
+                }
+            }
+            else{
+                return "idade inválida"
+            }
+        }
+
+        console.log(idade, ":", faixaEtaria(idade));
+
+        //1.4 Laços de repetição
+        console.log("Contagem de 1 a 10 a seguir:")
+        for (let i = 1; i <= 10; i++){
+            console.log("número:", i);
+        }
+
+        function calculaSoma(N){
+            let somaFinal = 0;
+            for (let i = 0; i <= N; i++){
+                somaFinal += i;
+            }
+            return somaFinal;
+        }
+
+        console.log("Soma de todos os números de 1 a 20:", calculaSoma(20))
+        console.log("---");
+        
+        //2.1 Funções Básicas
+        C = 20 //referente a 20 graus celsius
+
+        function celciusFar(C){
+            let F = (C * 9/5) + 32
+            console.log(C, "ºC em Fahrenheit:", F);
+        }
+
+        celciusFar(C);
+
+        let soma = 0;
+        let Conjunto = [5, 6, 7, 9, 2];
+
+        function media(matriz){
+            for(let i = 0; i <= 4; i++){
+                soma += matriz[i];
+            }
+            md = soma / 5
+            console.log("Media do array analisado:", md)
+        }
+
+        media(Conjunto);
+
+        //2.2 Escopo de Variáveis
+        function Escopo(){
+            let X = 5
+        }
+
+        //console.log(x);
+        console.log("Existe um erro na linha 133 deste código, pois a variável X é chamada, porém esta variável não esta disponível em escopo global,apenas no escopo local da função escopo e não pode ser acessada em nivel global, por isso o erro ocorre.");
+
+        //2.3 Funções anônimas e Arrow Functions
+        let Saudacao = function(){
+            return "Olá, Mundo!"
+        }
+        console.log("Função Anônima:", Saudacao());
+
+
+        F = 85//refente a ºF
+        let fCelsius = (F) => C = (F - 32) / (9/5);
+        console.log(F, "ºF em ºC =", fCelsius(F).toFixed(0), "(arredondado)")
+        console.log("---")
+
+        //3.1 Manipulação de Arrays
+        const semanaDias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"]
+
+        function contaDias(semana){
+            for(let i = 0; i<=6; i++){
+                console.log(semana[i]);
+            }
+        }
+
+        console.log("Veja abaixo os dias da semana registrados no Array: semanaDias.")
+        contaDias(semanaDias);
+
+        A = 0;
+
+        function maiorNum(matriz){
+            for(let i = 0; i <= 5; i++){
+                if (matriz[i] > A){
+                    A = matriz[i];
+                }
+            }
+            console.log("O maior valor do Array é:", A);
+        }
+        maiorNum(Conjunto);
+
+        //3.2 Métodos e Arrays
+        const quadrados = Conjunto.map(Conjunto => Conjunto ** 2)
+        console.log(quadrados)
+
+        const frutas = ["maçã", "Banana", "Abacaxi", "Uva"];
+        const selecionaCaracteres = frutas.filter(letras => letras.length >= 5)
+        console.log(selecionaCaracteres);
+
+        //3.3 Objetos
+        const carro = {
+            marca: "BMW",
+            modelo: "Z4",
+            ano: "2016",
+            atualizaAno: function(novoAno){
+                this.ano = novoAno;
+            }
+        }
+        function exibirInfo(obj){
+            console.log(obj.marca, obj.modelo, obj.ano)
+        }
+        exibirInfo(carro);
+        carro.atualizaAno("2010")
+        console.log("Alterando o ano do veículo:");
+        exibirInfo(carro);
+
+        console.log("---")
+
+        //4.1 Funções de String
+        function textoMaiusculo(texto){
+            console.log(texto.toUpperCase())
+        }
+        console.log("texto simples.")
+        textoMaiusculo("texto simples.")
+
+        let vogais = 0;
+        function contaVogal(texto){
+            const analisar = texto.toUpperCase();
+            for (let i =0; i <= analisar.length; i++){
+                if (analisar[i] == "A" || analisar[i] == "E" || analisar[i] == "I" || analisar[i] == "O" || analisar[i] == "U"){
+                    vogais += 1;
+                }
+            }
+            console.log("O texto informado tem ", vogais, "vogais.");
+        }
+        contaVogal("texto simples");
+
+        //4.2 Métodos de String
+        //verificação de e-mail
+        function verificaEmail(email){
+            arroba = false;
+            emailNormalizado = email.toUpperCase();
+            for (let i = 0; i <= emailNormalizado.length; i++){
+                if(emailNormalizado[i] == "@"){
+                    arroba = true;
+                    i = emailNormalizado.length + 1;
+                }
+            }
+            if(arroba == true && emailNormalizado.slice(-4) == ".COM"){
+                console.log("email verdadeiro:", email);
+            } else{
+                console.log("email informado inválido:", email);
+            }
+        }
+        console.log("Texte com email falso"); verificaEmail("EmailDoJoao");
+        console.log("Texte com email verdadeiro"); verificaEmail("hzimeness@gmail.com")
+
+        function pegaInicial(nome){
+            let inicias = ""
+            for(let i = 0; i <= nome.length; i++){
+                if (nome[i]== nome[0]){
+                    iniciais = nome[i] + "."
+                }
+                if (nome[i]== " "){
+                    iniciais += nome[i+1] + "."
+                }
+            }
+            console.log(iniciais);
+        }
+
+        pegaInicial("Luiz Henrique Oliveira De Freitas");
+    </script>
+</body>
+</html>
