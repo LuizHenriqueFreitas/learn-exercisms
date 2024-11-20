@@ -4,9 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de exercícios</title>
+    <style>
+        .destaque {
+            background-color: brown;
+            border-radius: 15px;
+            color: whitesmoke;
+            padding: 20px;
+        }
+        .inicial {
+            padding: 20px;
+        }
+
+        #minhaImagem{
+            max-width: 400px;
+            max-height: 400px;
+        }
+    </style>
 </head>
 <body>
-    <p>Este arquivo contem os exercícios propostos a serem solucionados em javascript</p>
+    <p>Este arquivo contem os exercícios propostos a serem solucionados em javascript.</p>
+    <br>
+    <p>Podes conferir os resultados pelo console, e os valores usados pelo código do site.</p>
+
+    <p>Abaixo vejamos a resolução dos exercícios 5.1 a 5.12, interação de JavaScript com HTML.</p>
+
+    <!--5.1 Manipulação de texto-->
+    <div id="mensagem">Mensagem inicial</div>
+    <button id="mudarTexto">Mudar Texto</button>
+
+    <!--5.2 Adicionando e Removendo Classes-->
+    <p id="paragrafo" class="inicial">Parágrafo com estilo inicial.</p>
+    <button id="toggleClasse">Toggle Classes</button>
+
+    <!--5.3 Eventos de Formulário-->
+    <form id="meuFormulario">
+        <label for="name">Nome:</label>
+        <input type="text" id="nome" name="nome">
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="mensagemForm"></p>
+
+    <!--5.4 Alterando estilo dinâmicamente-->
+    <h1 id="titulo">Título de Exemplo</h1>
+    <button id="mudarCor">Mudar Cor</button>
+
+    <!--5.5 Adicionando Elementos à Página-->
+    <ul id="listaDeTarefas">
+        <li>Tarefa 1</li>
+        <li>Tarefa 2</li>
+    </ul>
+    <button id="adicionarTarefa">Adicionar Tarefas</button>
+
+    <!--5.6 Manipulando Imagens com JavaScript-->
+    <img id="minhaImagem" src="imagem1.jpg" alt="Imagem inicial">
+    <button id="trocarImagem">Trocar Imagem</button>
+
+    <!--5.7 Calculadora Simples-->
+    <input type="number" id="num1" placeholder="Número 1">
+    <input type="number" id="num2" placeholder="Número 2">
+    <button id="calcular">Somar</button>
+    <p id="resultado">Resultado: </p>
+    
+    <!--5.8 Contador de Cliques-->
+    <button id="botaoContador">Clique aqui</button>
+    <p id="contador">Cliques: 0</p>
+
+    <!--5.9 Lista de Tarefas com Input Dinâmico-->
+    <input type="text" id="novaTarefa" placeholder="Digite a nova tarefa">
+    <button id="adicionar">Adicionar Tarefa</button>
+    <ul id="tarefas"></ul>
+
+    <!--5.10 Mudança de Cor de Fundo com Seletor-->
+    <select id="corFundo">
+        <option value="white">Branco</option>
+        <option value="lightblue">Azul Claro</option>
+        <option value="lightgreen">Verde Claro</option>
+        <option value="lightpink">Rosa Claro</option>
+    </select>
+
+    <!--5.11 Calculando a Média de Números-->
+    <input type="number" id="nota1" placeholder="Nota 1">
+    <input type="number" id="nota2" placeholder="Nota 2">
+    <button id="calculaMedia">Calcular Média</button>
+    <p id="media">Média: </p>
+
+    <!--5.12 Display de Hora Atual-->
+    <p id="horarioAtual">Horário: </p>
+    <button id="atualizarHorario">Atualizar Horário</button>
+
     <script>
         //1.1 Variáveis e tipos de dados
         let nome = "Luiz";
@@ -250,6 +335,81 @@
         }
 
         pegaInicial("Luiz Henrique Oliveira De Freitas");
+
+        //5.1 Mudança de texto e Atributos
+        document.getElementById("mudarTexto").addEventListener("click", function(){
+            document.getElementById("mensagem").innerHTML = "Texto atualizado!";
+        });
+
+        //5.2 Adicionando e Removendo Classes
+        document.getElementById("toggleClasse").addEventListener("click", function(){
+            document.getElementById("paragrafo").classList.toggle("destaque");
+        });
+
+        //5.3 Eventos de Formulário
+        const formulario = document.getElementById("meuFormulario");
+        formulario.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            const nome = document.getElementById("nome").value;
+            const mensagem = document.getElementById("mensagemForm");
+            mensagem.textContent = nome;
+        });
+
+        //5.4 Alterando estilo dinâmicamente
+        document.getElementById("mudarCor").addEventListener("click", function(){
+            document.getElementById("titulo").style.color = "red"
+        })
+
+        //5.5 Adicionando Elementos à Página
+        document.getElementById("adicionarTarefa").addEventListener("click", function(){
+            document.getElementById("listaDeTarefas").innerHTML += `<li> Nova Tarefa</li>`
+        })
+
+        //5.6 Manipulando Imagens com JavaScript
+        document.getElementById("trocarImagem").addEventListener("click", function(){
+            document.getElementById("minhaImagem").src = "imagem2.jpeg";
+        });
+
+        //5.7 Calculadora Simples
+        document.getElementById("calcular").addEventListener("click", function(){
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            document.getElementById("resultado").innerHTML = `Resultado: ${num1 + num2}`;
+        });
+
+        //5.8 Contador de Cliques
+        let i = 0
+        document.getElementById("botaoContador").addEventListener("click", function(){
+            i++
+            document.getElementById("contador").innerHTML = `Cliques: ${i}`
+        });
+
+        //5.9 Lista de Tarefas com Input Dinâmico
+        document.getElementById("adicionar").addEventListener("click", function(){
+            let tarefa = document.getElementById("novaTarefa").value;
+            document.getElementById("tarefas").innerHTML += `<li> ${tarefa}</li>`
+        });
+
+        //5.10 Mudança de Cor de Fundo com Seletor
+        document.getElementById("corFundo").addEventListener("change", function(){
+            let cor = document.getElementById("corFundo").value;
+            document.body.style.backgroundColor = cor;
+        });
+
+        //5.11 Calculando a Média de Números
+        document.getElementById("calculaMedia").addEventListener("click", function(){
+            let nota1 = parseFloat(document.getElementById("nota1").value);
+            let nota2 = parseFloat(document.getElementById("nota2").value);
+            document.getElementById("media").innerHTML = (nota1 + nota2) / 2;
+        })
+
+        //5.12 Display de Hora Atual
+        document.getElementById("atualizarHorario").addEventListener("click", function(){
+            const agora = new Date();
+            const horas = agora.getHours().toString().padStart(2, '0');
+            const minutos = agora.getMinutes().toString().padStart(2, '0');
+            document.getElementById("horarioAtual").innerHTML = `${horas}:${minutos}`
+        })
     </script>
 </body>
 </html>
